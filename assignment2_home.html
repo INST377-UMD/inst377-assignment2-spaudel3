@@ -1,8 +1,64 @@
 <html>
     <head>
-
+        <link href="assignment2.css" rel="stylesheet">
+        <script src="//cdnjs.cloudflare.com/ajax/libs/annyang/2.6.0/annyang.min.js"></script>
     </head>
     <body>
+        <h1>INST377 - Activities</h1>
+
+        <nav id = "main-nav">
+            <ul>
+                <li><a href="assignment2_home.html">HOME</a></li>
+                <li><a href="assignment2_stocks.html">STOCKS</a></li>
+                <li><a href="assignment2_dogs.html">DOGS</a></li>
+            </ul>
+        </nav>
         
+        <h1>These are some different activities we can try!</h1>
+
+        <div class="buttons">
+            <button class="button-89" role="button"><a href="assignment2_stocks.html">Stocks</a></button>
+            <button class="button-89" role="button"><a href="assignment2_dogs.html">Dogs</a></button>
+        </div>
+        <br>
+        <div class="quote-container">
+            <h2>Quote of the Page Load</h2>
+            <p id="quote-text"></p>
+        </div>
+        <br>
+        <div class="audio-instructions">
+            <h1>In this web page there are options to Navigate using Audio!</h1>
+            <p>Ensure your mic is enabled to be able to use this feature</p>
+            <ul>
+                <li>Navigate to a Different Page</li>
+                <ul><li>Say: <b>Navigate to (page)</b></li></ul>
+                <li>Change the Page Color</li>
+                <ul><li>Say: <b>Change the color to (color)</b></li></ul>
+                <li>Say Hello Back to you!</li>
+                <ul><li>Say: <b>Hello</b></li></ul>
+            </ul>
+            <div class="listening-buttons">
+                <input type="button" value="Turn on Listening">
+                <input type="button" value="Turn off Listening">
+            </div>
+        </div>
+
+        <script type="text/javascript">
+            const api_url = "https://zenquotes.io/api/quotes/";
+
+            async function quoteLoad(url) {
+                const response = await fetch(url);
+                var data = await response.json();
+                console.log(data);
+                const randomIndex = Math.floor(Math.random() * data.length);
+                document.getElementById("quote-text").innerHTML = `"${data[randomIndex].q}" -\n${data[randomIndex].a}`;
+            }
+            const randomQuote = quoteLoad(api_url);
+            // return randomQuote;
+            // function pickRandom() {
+                
+            // }
+            // document.getElementByID("quote-text").innerHTML = randomQuote;
+        </script>
     </body>
 </html>

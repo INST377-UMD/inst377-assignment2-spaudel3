@@ -1,0 +1,99 @@
+
+
+#main-nav {
+    background-color: black;
+    color:aquamarine;
+    width:98%;
+    padding:10px;
+}
+
+#main-nav li{
+    display: inline-block;
+    position: relative;
+}
+
+#main-nav li a:hover{
+    color: black;
+    background-color:aquamarine;
+}
+
+#main-nav ul{
+    list-style-type: none;
+    padding: 10px;
+    margin:0;
+    text-align: center;
+}
+
+#main-nav li a{
+    color:aquamarine;
+    padding:10px;
+    text-decoration: none;
+}
+
+#main-nav ul li{
+    list-style-type: none;
+    display:inline-block;
+}
+
+.buttons{
+    text-align: center;
+}
+
+.button-89 {
+    --b: 3px;   /* border thickness */
+    --s: .45em; /* size of the corner */
+    --color: #373B44;
+    
+    text-align: center;
+    padding: calc(.5em + var(--s)) calc(.9em + var(--s));
+    color: var(--color);
+    --_p: var(--s);
+    background:
+      conic-gradient(from 90deg at var(--b) var(--b),#0000 90deg,var(--color) 0)
+      var(--_p) var(--_p)/calc(100% - var(--b) - 2*var(--_p)) calc(100% - var(--b) - 2*var(--_p));
+    transition: .3s linear, color 0s, background-color 0s;
+    outline: var(--b) solid #0000;
+    outline-offset: .6em;
+    font-size: 32px;
+  
+  
+    border: 0;
+  
+  
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+  }
+  
+  
+  .button-89:hover,
+  .button-89:focus-visible{
+    --_p: 0px;
+    outline-color: var(--color);
+    outline-offset: .05em;
+  }
+  
+  
+  .button-89:active {
+    background: var(--color);
+    color: #fff;
+  }
+  
+  .quote-container {
+    text-align: center;
+    background-color:darkslategray;
+    color:aquamarine;
+    border:2px solid black;
+    float:center;
+    width:70%;
+    margin:auto;
+  }
+
+  .audio-instructions {
+    background-color:darkslategray;
+    color:aquamarine;
+    border:2px solid black;
+    float:center;
+    width:60%;
+    margin:auto;
+  }

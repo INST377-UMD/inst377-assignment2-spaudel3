@@ -38,10 +38,46 @@
                 <ul><li>Say: <b>Hello</b></li></ul>
             </ul>
             <div class="listening-buttons">
-                <input type="button" value="Turn on Listening">
-                <input type="button" value="Turn off Listening">
+                <input type="button" id="startListen" value="Turn on Listening">
+                <input type="button" id="stopListen" value="Turn off Listening">
             </div>
         </div>
+
+        <script src="//cdnjs.cloudflare.com/ajax/libs/annyang/2.6.1/annyang.min.js"></script>
+        <script>
+            const startButton = document.getElementById("startListen");
+            const stopButton = document.getElementById("stopListen");
+            startButton.addEventListener('click', function whenListening(){
+                if (annyang) {
+                    const commands = {
+                        'hello': () => { alert('Hello world!'); },
+                        'navigate to stocks': () => {window.location.href = "assignment2_stocks.html"},
+                        'navigate to dogs': () => {window.location.href = "assignment2_dogs.html"},
+                        // 'change color to ': (color) => {document.body.style.backgroundColor = color;}
+                    }
+                    annyang.addCommands(commands);
+                    annyang.start();
+                }
+                console.log('Now listening');
+            });
+
+            stopButton.addEventListener('click', function stopListening(){
+                // did abort() at first, but wouldn't work again when hitting turn on listening
+                annyang.abort();
+            })
+            // if (annyang) {
+            // // Let's define a command.
+            // const commands = {
+
+            // };
+            
+            // // Add our commands to annyang
+            // annyang.addCommands(commands);
+            
+            // // Start listening.
+            // // annyang.start();
+            // }
+        </script>
 
         <script type="text/javascript">
             const api_url = "https://zenquotes.io/api/quotes/";

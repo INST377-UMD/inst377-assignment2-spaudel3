@@ -15,5 +15,18 @@
         </nav>
 
         <h1>Let's chart some stocks!</h1>
+        
+        <input type="text" id="stockInput" required>
+        <br>
+        <select name="days" id="days">
+            <option value="thirty">30 Days</option>
+            <option value="sixty">60 Days</option>
+            <option value="ninety">90 Days</option>
+        </select>
+        <br>
+        <input type="button" id="stockLookup" value="Lookup!">
+        <div>
+            <canvas id="lineChart"></canvas>
+        </div>
     </body>
 </html>

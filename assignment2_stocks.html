@@ -2,7 +2,6 @@
     <head>
         <link href="assignment2.css" rel="stylesheet">
         <script src="assignment2_stockschart.js" defer></script>
-        <script src="assignment2_topstocks.js" defer></script>
     </head>
     <body>
         <h1>INST377 - Activities</h1>
@@ -32,23 +31,13 @@
         </div>
         <br>
         <div class="topStocks">
-            <table>
-                <thead>
+            <table id="table">
+                <thead id="thead">
                     <th>TICKER</th>
                     <th>COMMENT COUNT</th>
                     <th>SENTIMENT</th>
                 </thead>
-                <tbody>
-                    <tr>
-                        <th id="firstTick"></th>
-                        <th id="firstCount"></th>
-                        <th id="firstSent"></th>
-                    </tr>
-                    <tr>
-                        <th id="secondTick"></th>
-                        <th id="secondCount"></th>
-                        <th id="secondSent"></th>
-                    </tr>
+                <tbody id="tbody">
                 </tbody>
             </table>
         </div>
@@ -93,5 +82,6 @@
                 annyang.abort();
             })
         </script>
+        <script src="assignment2_topstocks.js" defer></script>
     </body>
 </html>

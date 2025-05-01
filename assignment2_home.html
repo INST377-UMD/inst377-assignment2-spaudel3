@@ -62,7 +62,6 @@
             });
 
             stopButton.addEventListener('click', function stopListening(){
-                // did abort() at first, but wouldn't work again when hitting turn on listening
                 annyang.abort();
             })
             // if (annyang) {
@@ -84,7 +83,8 @@
 
             async function quoteLoad(url) {
                 const response = await fetch(url);
-                var data = await response.json();
+                // data was originally var, changed to const, idk if that'll mess anything up
+                const data = await response.json();
                 console.log(data);
                 const randomIndex = Math.floor(Math.random() * data.length);
                 document.getElementById("quote-text").innerHTML = `"${data[randomIndex].q}" -\n${data[randomIndex].a}`;

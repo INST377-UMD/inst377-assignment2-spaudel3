@@ -28,5 +28,49 @@
         <div>
             <canvas id="lineChart"></canvas>
         </div>
+
+        <div class="topStocks">
+            <!-- top 5 stocks stuff here, idk how to do that yet -->
+        </div>
+
+        <div class="audio-instructions">
+            <h1>In this web page there are options to Navigate using Audio!</h1>
+            <p>Ensure your mic is enabled to be able to use this feature</p>
+            <ul>
+                <li>Navigate to a Different Page</li>
+                <ul><li>Say: <b>Navigate to (page)</b></li></ul>
+                <li>Change the Page Color</li>
+                <ul><li>Say: <b>Change the color to (color)</b></li></ul>
+                <li>Say Hello Back to you!</li>
+                <ul><li>Say: <b>Hello</b></li></ul>
+            </ul>
+            <div class="listening-buttons">
+                <input type="button" id="startListen" value="Turn on Listening">
+                <input type="button" id="stopListen" value="Turn off Listening">
+            </div>
+        </div>
+
+        <script src="//cdnjs.cloudflare.com/ajax/libs/annyang/2.6.1/annyang.min.js"></script>
+        <script>
+            const startButton = document.getElementById("startListen");
+            const stopButton = document.getElementById("stopListen");
+            startButton.addEventListener('click', function whenListening(){
+                if (annyang) {
+                    const commands = {
+                        'hello': () => { alert('Hello world!'); },
+                        'navigate to home': () => {window.location.href = "assignment2_home.html"},
+                        'navigate to dogs': () => {window.location.href = "assignment2_dogs.html"},
+                        // 'change color to ': (color) => {document.body.style.backgroundColor = color;}
+                    }
+                    annyang.addCommands(commands);
+                    annyang.start();
+                }
+                console.log('Now listening');
+            });
+
+            stopButton.addEventListener('click', function stopListening(){
+                annyang.abort();
+            })
+        </script>
     </body>
 </html>

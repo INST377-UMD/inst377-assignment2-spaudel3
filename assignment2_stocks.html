@@ -2,6 +2,7 @@
     <head>
         <link href="assignment2.css" rel="stylesheet">
         <script src="assignment2_stockschart.js" defer></script>
+        <script src="assignment2_topstocks.js" defer></script>
     </head>
     <body>
         <h1>INST377 - Activities</h1>
@@ -29,20 +30,29 @@
             <canvas id="lineChart"></canvas>
             <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
         </div>
-
+        <br>
         <div class="topStocks">
             <table>
-                <tr>
+                <thead>
                     <th>TICKER</th>
                     <th>COMMENT COUNT</th>
                     <th>SENTIMENT</th>
-                </tr>
-                <tr>
-                    <th></th>
-                </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th id="firstTick"></th>
+                        <th id="firstCount"></th>
+                        <th id="firstSent"></th>
+                    </tr>
+                    <tr>
+                        <th id="secondTick"></th>
+                        <th id="secondCount"></th>
+                        <th id="secondSent"></th>
+                    </tr>
+                </tbody>
             </table>
         </div>
-
+        <br>
         <div class="audio-instructions">
             <h1>In this web page there are options to Navigate using Audio!</h1>
             <p>Ensure your mic is enabled to be able to use this feature</p>

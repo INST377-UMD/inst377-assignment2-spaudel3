@@ -1,36 +1,30 @@
-var stockPrice = [];
-var stockDate = [];
-myChart = document.getElementById('lineChart');
-// var api_url = "";
-// var dropDown = document.getElementById("days");
-// console.log(dropDown);
+let myChart;
 
-async function createChart() {
-    await getStockData();
-//Don't need this function
-//Need list of dates and list of prices
-    
-}
-
-// createChart();
-
-async function getStockData() {
+async function getStockData(stock) {
     // const currentDate = () => new Date();
     // var dropDown = document.getElementById("days");
     // var dropDownOption = dropDown.value;
-    var stockOption = document.getElementById("stockInput").value;
-
-    fromDate = getPriorDate();
-    api_url = `https://api.polygon.io/v2/aggs/ticker/${stockOption}/range/1/day/${fromDate}/${currentDate}?sort=asc&apiKey=Qr2qDsgBpBaMQiM8seBZjEhgLKnph7Iy`;
+    ctx = document.getElementById('lineChart');
+    var stockPrice = [];
+    var stockDate = [];
+    var stockOption = stock.value;
+    bothDates = getDates();
+    api_url = `https://api.polygon.io/v2/aggs/ticker/${stockOption}/range/1/day/${bothDates[1]}/${bothDates[0]}?sort=asc&apiKey=Qr2qDsgBpBaMQiM8seBZjEhgLKnph7Iy`;
+    console.log(api_url);
     const response = await fetch(api_url);
     const lineChartData = await response.json();
-    console.log(lineChartData);
+    const data = lineChartData.results
+    console.log(data);
+    data.forEach((item) => stockDate.push(new Date(item.t).toLocaleDateString()));
+    data.forEach((item) => stockPrice.push(item.c));
     // date and price should be in different arrays
-    const date = lineChartData.map( (x) => epochToStandard(x.t));
-    const price = lineChartData.map( (x) => x.c);
-    console.log(date, price);
-    stockDate = date;
-    stockPrice = price;
+    // const date = lineChartData.map( (x) => epochToStandard(x.t));
+    // const price = lineChartData.map( (x) => x.c);
+    console.log(stockDate, stockPrice);
+    
+    if (myChart) {
+        myChart.destroy();
+    }
     myChart = new Chart(ctx, {
         type: 'line',
         data: {
@@ -43,8 +37,10 @@ async function getStockData() {
     });
 }
 
-function getPriorDate() {
-    const currentDate = new Date();
+function getDates() {
+    var currentDate = new Date();
+    // added dropDown here, not sure if I need it
+    var dropDown = document.getElementById("days");
     if (dropDown.selectedIndex == 0) {
         var priorDate = new Date().setDate(currentDate.getDate() - 30);
     } else if (dropDown.selectedIndex == 1) {
@@ -52,14 +48,20 @@ function getPriorDate() {
     } else if (dropDown.selectedIndex == 2) {
         var priorDate = new Date().setDate(currentDate.getDate() - 90);
     }
-    return priorDate;
+    newCurrentDate = currentDate.getTime();
+    return [epochToStandard(newCurrentDate), epochToStandard(priorDate)];
 }
 
 function epochToStandard(int) {
-    var epochDate = new Date(int*1000);
+    console.log(int);
+    var epochDate = new Date(int);
+    console.log(epochDate);
     var year = epochDate.getFullYear();
-    var month = epochDate.getMonth() + 1;
-    var day = epochDate.getDate();
+    console.log(year);
+    var month = (epochDate.getMonth() + 1).toString().padStart(2, '0');
+    console.log(month);
+    var day = epochDate.getDate().toString().padStart(2, '0');
+    console.log(day);
     var reformatedDate = year + "-" + month + "-" + day;
     console.log(reformatedDate);
     return reformatedDate;

@@ -16,7 +16,7 @@
 
         <h1>Let's chart some stocks!</h1>
         
-        <input type="text" id="stockInput" required>
+        <input type="text" id="stockInput" maxlength="5" required>
         <br>
         <select name="days" id="days">
             <option value="thirty">30 Days</option>
@@ -24,13 +24,23 @@
             <option value="ninety">90 Days</option>
         </select>
         <br>
-        <input type="button" id="stockLookup" onclick="createChart()" value="Lookup!">
+        <input type="button" id="stockLookup" onclick="getStockData(stockInput)" value="Lookup!">
         <div>
             <canvas id="lineChart"></canvas>
+            <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
         </div>
 
         <div class="topStocks">
-            <!-- top 5 stocks stuff here, idk how to do that yet -->
+            <table>
+                <tr>
+                    <th>TICKER</th>
+                    <th>COMMENT COUNT</th>
+                    <th>SENTIMENT</th>
+                </tr>
+                <tr>
+                    <th></th>
+                </tr>
+            </table>
         </div>
 
         <div class="audio-instructions">
@@ -60,7 +70,8 @@
                         'hello': () => { alert('Hello world!'); },
                         'navigate to home': () => {window.location.href = "assignment2_home.html"},
                         'navigate to dogs': () => {window.location.href = "assignment2_dogs.html"},
-                        'change color to *tag': (color) => {document.body.style.backgroundColor = color;}
+                        'change the color to *tag': (color) => {document.body.style.backgroundColor = color;},
+                        'look up *tag': (stock) => {getStockData(stock);}
                     }
                     annyang.addCommands(commands);
                     annyang.start();

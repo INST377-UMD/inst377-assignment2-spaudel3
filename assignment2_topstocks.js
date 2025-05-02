@@ -7,9 +7,10 @@ async function getTop() {
     // append every ticket, count, and sentiment in a for each loop at the end
     // don't need multiple functions
     console.log(data);
-    data.forEach((item) => item.sort((a, b) => b[1] - a[1]));
+    // this sort doesn't work, double check the logic
+    data.sort((a, b) => b.value - a.value);
     console.log(data);
-    top = data.slice(0, 4);
+    const top = data.slice(0, 5);
     console.log(top);
     return top;
 }
@@ -32,13 +33,24 @@ async function populateTable() {
         row.appendChild(sentimentCell);
         tbody.appendChild(row);
     })
+    console.log(tbody);
+    replaceSentiment(tbody);
     table.appendChild(tbody);
-    
-    // for (let i = 0; i < topFive.length; i++) {
-    //     var currentTick = topFive[i].ticker;
-    //     var currentCount = topFive[i].no_of_comments;
-    //     var currentSentiment = topFive[i].sentiment;
-
-    // }
 }
-// document.getElementById("firstTick").innerHTML = `${top.ticker.value}`
+
+function replaceSentiment(body) {
+    var list = body.getElementById("td");
+    let bearishImg = new Image();
+    bearishImg.src = "https://cdni.iconscout.com/illustration/premium/thumb/man-fighting-with-stock-market-bearish-run-illustration-download-in-svg-png-gif-file-formats--loss-trader-broker-anxious-business-and-finance-pack-illustrations-3793611.png";
+    let bullishImg = new Image();
+    bullishImg.src = "https://img.freepik.com/premium-vector/bull-climbs-up-bullish-growth-graph-stock-market_186444-316.jpg";
+    body.forEach((element) => {
+        if (element.getElementById("td") == "Bearish") {
+            element.getElementById("td").innerHTML = bearishImg;
+        } else if (element.getElementById("td") == "Bullish") {
+            element.getElementById("td").innerHTML = bullishImg;
+        }
+    })
+}
+
+populateTable();

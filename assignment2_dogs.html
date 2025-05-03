@@ -49,9 +49,10 @@
                         'navigate to home': () => {window.location.href = "assignment2_home.html"},
                         'navigate to stocks': () => {window.location.href = "assignment2_stocks.html"},
                         'change the color to *tag': (color) => {document.body.style.backgroundColor = color;},
-                        // 'look up *tag': (stock) => {
-                        //     document.getElementById("stockInput").value = stock;
-                        //     getStockData();}
+                        
+                        'look up *tag': (dog) => {
+                            document.getElementById(dog).click();
+                        }
                     }
                     annyang.addCommands(commands);
                     annyang.start();
@@ -66,22 +67,7 @@
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/simple-slider/1.0.0/simpleslider.min.js"></script>
         <script>
-            async function getImage() {
-                const div = document.getElementById("imageSlider");
-                await fetch("https://dog.ceo/api/breeds/image/random/10")
-                .then(res => res.json())
-                .then(data => {
-                    console.log(data);
-                    data.message.forEach((item) => {
-                        let image = document.createElement("img");
-                        image.src = item;
-                        image.width = 300;
-                        image.height = 300;
-                        div.appendChild(image);
-                    })
-                    simpleslider.getSlider();
-                })
-            }
+            
         </script>
     </body>
 </html>

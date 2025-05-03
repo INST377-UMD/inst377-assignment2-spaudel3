@@ -1,6 +1,7 @@
 <html>
     <head>
         <link href="assignment2.css" rel="stylesheet">
+        <script src="assignment2_dogbuttons.js" defer></script>
     </head>
     <body onload="getImage()">
         <h1>INST377 - Activities</h1>
@@ -16,6 +17,53 @@
         </div>
         <div id="dogButtons">
         </div>
+        <div id="dogInfo">
+        </div>
+
+        <br>
+        <div class="audio-instructions">
+            <h1>In this web page there are options to Navigate using Audio!</h1>
+            <p>Ensure your mic is enabled to be able to use this feature</p>
+            <ul>
+                <li>Navigate to a Different Page</li>
+                <ul><li>Say: <b>Navigate to (page)</b></li></ul>
+                <li>Change the Page Color</li>
+                <ul><li>Say: <b>Change the color to (color)</b></li></ul>
+                <li>Say Hello Back to you!</li>
+                <ul><li>Say: <b>Hello</b></li></ul>
+            </ul>
+            <div class="listening-buttons">
+                <input type="button" id="startListen" value="Turn on Listening">
+                <input type="button" id="stopListen" value="Turn off Listening">
+            </div>
+        </div>
+
+        <script src="//cdnjs.cloudflare.com/ajax/libs/annyang/2.6.1/annyang.min.js"></script>
+        <script>
+            const startButton = document.getElementById("startListen");
+            const stopButton = document.getElementById("stopListen");
+            startButton.addEventListener('click', function whenListening(){
+                if (annyang) {
+                    const commands = {
+                        'hello': () => { alert('Hello world!'); },
+                        'navigate to home': () => {window.location.href = "assignment2_home.html"},
+                        'navigate to stocks': () => {window.location.href = "assignment2_stocks.html"},
+                        'change the color to *tag': (color) => {document.body.style.backgroundColor = color;},
+                        // 'look up *tag': (stock) => {
+                        //     document.getElementById("stockInput").value = stock;
+                        //     getStockData();}
+                    }
+                    annyang.addCommands(commands);
+                    annyang.start();
+                }
+                console.log('Now listening');
+            });
+
+            stopButton.addEventListener('click', function stopListening(){
+                annyang.abort();
+            })
+        </script>
+
         <script src="https://cdnjs.cloudflare.com/ajax/libs/simple-slider/1.0.0/simpleslider.min.js"></script>
         <script>
             async function getImage() {

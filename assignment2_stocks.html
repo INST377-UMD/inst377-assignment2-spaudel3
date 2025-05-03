@@ -70,7 +70,9 @@
                         'navigate to home': () => {window.location.href = "assignment2_home.html"},
                         'navigate to dogs': () => {window.location.href = "assignment2_dogs.html"},
                         'change the color to *tag': (color) => {document.body.style.backgroundColor = color;},
-                        'look up *tag': (stock) => {getStockData(stock);}
+                        'look up *tag': (stock) => {
+                            document.getElementById("stockInput").value = stock;
+                            getStockData();}
                     }
                     annyang.addCommands(commands);
                     annyang.start();

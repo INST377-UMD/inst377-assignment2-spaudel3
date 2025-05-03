@@ -1,10 +1,10 @@
 let myChart;
 
-async function getStockData(stock) {
+async function getStockData() {
     ctx = document.getElementById('lineChart');
     var stockPrice = [];
     var stockDate = [];
-    var stockOption = stock.value;
+    var stockOption = document.getElementById("stockInput").value;
     bothDates = getDates();
     api_url = `https://api.polygon.io/v2/aggs/ticker/${stockOption}/range/1/day/${bothDates[1]}/${bothDates[0]}?sort=asc&apiKey=Qr2qDsgBpBaMQiM8seBZjEhgLKnph7Iy`;
     console.log(api_url);

@@ -1,9 +1,6 @@
 let myChart;
 
 async function getStockData(stock) {
-    // const currentDate = () => new Date();
-    // var dropDown = document.getElementById("days");
-    // var dropDownOption = dropDown.value;
     ctx = document.getElementById('lineChart');
     var stockPrice = [];
     var stockDate = [];
@@ -17,9 +14,6 @@ async function getStockData(stock) {
     console.log(data);
     data.forEach((item) => stockDate.push(new Date(item.t).toLocaleDateString()));
     data.forEach((item) => stockPrice.push(item.c));
-    // date and price should be in different arrays
-    // const date = lineChartData.map( (x) => epochToStandard(x.t));
-    // const price = lineChartData.map( (x) => x.c);
     console.log(stockDate, stockPrice);
     
     if (myChart) {
@@ -39,7 +33,6 @@ async function getStockData(stock) {
 
 function getDates() {
     var currentDate = new Date();
-    // added dropDown here, not sure if I need it
     var dropDown = document.getElementById("days");
     if (dropDown.selectedIndex == 0) {
         var priorDate = new Date().setDate(currentDate.getDate() - 30);

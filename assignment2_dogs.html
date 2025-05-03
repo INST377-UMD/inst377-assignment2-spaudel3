@@ -1,6 +1,6 @@
 <html>
     <head>
-
+        <link href="assignment2.css" rel="stylesheet">
     </head>
     <body>
         <h1>INST377 - Activities</h1>
@@ -12,6 +12,58 @@
                 <li><a href="assignment2_dogs.html">DOGS</a></li>
             </ul>
         </nav>
-
+        <!-- Haven't installed the slider thing, may cause issues -->
+        <div style="width:612px; height:612px" data-simple-slider>
+            <img id = "img">
+            <!-- <img id = "img2"> -->
+            <!-- <img src="https://dog.ceo/api/breeds/image/random">
+            <img src="https://dog.ceo/api/breeds/image/random">
+            <img src="https://dog.ceo/api/breeds/image/random">
+            <img src="https://dog.ceo/api/breeds/image/random">
+            <img src="https://dog.ceo/api/breeds/image/random">
+            <img src="https://dog.ceo/api/breeds/image/random">
+            <img src="https://dog.ceo/api/breeds/image/random">
+            <img src="https://dog.ceo/api/breeds/image/random">
+            <img src="https://dog.ceo/api/breeds/image/random"> -->
+            <!-- <img id = "img"/>
+            <img id = "img" src = "https://img.freepik.com/premium-vector/bull-climbs-up-bullish-growth-graph-stock-market_186444-316.jpg"/>; -->
+            <!-- <img src="https://dog.ceo/api/breeds/image/random"/> -->
+        </div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/simple-slider/1.0.0/simpleslider.min.js"></script>
+        <script>
+            simpleslider.getSlider();
+            async function getImage() {
+                // console.log(img);
+                // const image = document.getElementById(img);
+                // console.log(image);
+                await fetch("https://dog.ceo/api/breeds/image/random")
+                .then(res => res.json())
+                .then(data => {
+                    console.log(data);
+                    const image = document.getElementById("img");
+                    // const image2 = document.getElementById("img2");
+                    // let dogList = data.messsage;
+                    // console.log(dogList);
+                    // data.forEach((dogImg => {
+                    //     image.src = dogImg.value;
+                    // }))
+                    image.src = data.message;
+                    // image2.src = data.message;
+                })
+            }
+            getImage();
+            
+            // async function getImage() {
+            //     const api_url = "https://dog.ceo/api/breeds/image/random";
+            //     let image = document.getElementById("img");
+            //     const response = await fetch(api_url);
+            //     const data = await response.json();
+            //     image.src = data.message;
+            //     // console.log(data);
+            //     // const image_url = URL.createObjectURL(data);
+            //     // const image_id = document.getElementById("img")
+            //     // image_id.src = image_url;
+            // }
+        </script>
     </body>
 </html>

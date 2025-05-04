@@ -7,8 +7,8 @@ async function getImage() {
         data.message.forEach((item) => {
             let image = document.createElement("img");
             image.src = item;
-            image.width = 300;
-            image.height = 300;
+            image.width = 612;
+            image.height = 612;
             div.appendChild(image);
         })
         
@@ -20,6 +20,8 @@ async function getImage() {
 async function createButton() {
     // getting button div
     const buttonDiv = document.getElementById("dogButtons");
+    const infoDiv = document.getElementById("dogInfo");
+    infoDiv.style.visibility = 'hidden';
     // api url
     const api_url = "https://dogapi.dog/api/v2/breeds"; 
     await fetch(api_url)
@@ -30,12 +32,12 @@ async function createButton() {
         // assigning the name of the dog breed to the button's title
         data.data.forEach((item) => {
             let button = document.createElement("button");
+            button.setAttribute("class", "button-23");
             button.textContent = item.attributes.name;
             button.id = item.attributes.name;
             button.value = item.attributes.name;
             button.addEventListener('click', function whenClicked(){
-                // getting dog info container
-                const infoDiv = document.getElementById("dogInfo");
+                infoDiv.style.visibility = 'visible';
                 // clearing the container of previous information
                 infoDiv.innerHTML = '';
                 // creating dog breed name
@@ -55,13 +57,5 @@ async function createButton() {
             })
             buttonDiv.appendChild(button);
         })
-        // when button is clicked...
-        // data from the api as a parameter, not sure if that works
-
-        
     })
 }
-// tried doing window.onload because the buttons aren't showing up
-// information shows up in the console, but the slider stops working
-// also throws a type error related to line 13 (related to name)
-// window.onload = createButton;

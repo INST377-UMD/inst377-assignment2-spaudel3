@@ -18,7 +18,13 @@ async function populateTable() {
     topFive.forEach((item) => {
         const row = document.createElement("tr");
         const tickCell = document.createElement("td");
-        tickCell.textContent = item.ticker;
+        const tickLink = document.createElement("a");
+        const stockUrl = `https://finance.yahoo.com/quote/${item.ticker}`
+        tickLink.setAttribute('href', stockUrl);
+        tickLink.target = '_blank';
+        tickLink.textContent = item.ticker;
+        console.log(tickCell);
+        tickCell.appendChild(tickLink);
         row.appendChild(tickCell);
         const countCell = document.createElement("td");
         countCell.textContent = item.no_of_comments;

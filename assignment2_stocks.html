@@ -16,7 +16,7 @@
 
         <h1>Let's chart some stocks!</h1>
         
-        <input type="text" id="stockInput" maxlength="5" required>
+        <input type="text" id="stockInput" maxlength="5" oninput="this.value = this.value.toUpperCase()" required>
         <br>
         <select name="days" id="days">
             <option value="thirty">30 Days</option>
@@ -24,7 +24,7 @@
             <option value="ninety">90 Days</option>
         </select>
         <br>
-        <input type="button" id="stockLookup" onclick="getStockData(stockInput)" value="Lookup!">
+        <button class="button-50" role="button" id="stockLookup" onclick="getStockData(stockInput)">Lookup!</button>
         <div>
             <canvas id="lineChart"></canvas>
             <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -46,6 +46,8 @@
             <h1>In this web page there are options to Navigate using Audio!</h1>
             <p>Ensure your mic is enabled to be able to use this feature</p>
             <ul>
+                <li>Look up a Stock</li>
+                <ul><li>Say: <b>Look up (stock)</b></li></ul>
                 <li>Navigate to a Different Page</li>
                 <ul><li>Say: <b>Navigate to (page)</b></li></ul>
                 <li>Change the Page Color</li>

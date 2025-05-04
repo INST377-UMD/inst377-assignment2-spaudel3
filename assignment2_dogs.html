@@ -1,7 +1,7 @@
 <html>
     <head>
         <link href="assignment2.css" rel="stylesheet">
-        <script src="assignment2_dogbuttons.js" defer></script>
+        <script src="assignment2_dogs.js" defer></script>
     </head>
     <body onload="getImage()">
         <h1>INST377 - Activities</h1>
@@ -13,8 +13,11 @@
                 <li><a href="assignment2_dogs.html">DOGS</a></li>
             </ul>
         </nav>
+        <h1>Dogs!!! &#128054</h1>
+        <br>
         <div id = "imageSlider" style="width:612px; height:612px" data-simple-slider>
         </div>
+        <br>
         <div id="dogButtons">
         </div>
         <div id="dogInfo">
@@ -25,6 +28,8 @@
             <h1>In this web page there are options to Navigate using Audio!</h1>
             <p>Ensure your mic is enabled to be able to use this feature</p>
             <ul>
+                <li>Load Dog Breed</li>
+                <ul><li>Say: <b>Load dog breed: (dog breed name)</b></li></ul>
                 <li>Navigate to a Different Page</li>
                 <ul><li>Say: <b>Navigate to (page)</b></li></ul>
                 <li>Change the Page Color</li>
@@ -49,8 +54,7 @@
                         'navigate to home': () => {window.location.href = "assignment2_home.html"},
                         'navigate to stocks': () => {window.location.href = "assignment2_stocks.html"},
                         'change the color to *tag': (color) => {document.body.style.backgroundColor = color;},
-                        
-                        'look up *tag': (dog) => {
+                        'load dog breed *tag': (dog) => {
                             document.getElementById(dog).click();
                         }
                     }

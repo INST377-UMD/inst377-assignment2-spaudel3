@@ -5,12 +5,20 @@ async function getStockData() {
     var stockPrice = [];
     var stockDate = [];
     var stockOption = document.getElementById("stockInput").value;
+    const stockUpper = stockOption.toLocaleUpperCase();
+    const stockReformat = stockUpper.replace(/\s/g, '');
+    console.log(stockUpper);
+    console.log(typeof stockUpper);
+    console.log(typeof stockOption);
+    console.log(stockOption);
+    // var stockUppercase = stockOption.toUppercase();
     bothDates = getDates();
-    api_url = `https://api.polygon.io/v2/aggs/ticker/${stockOption}/range/1/day/${bothDates[1]}/${bothDates[0]}?sort=asc&apiKey=Qr2qDsgBpBaMQiM8seBZjEhgLKnph7Iy`;
+    api_url = `https://api.polygon.io/v2/aggs/ticker/${stockReformat}/range/1/day/${bothDates[1]}/${bothDates[0]}?sort=asc&apiKey=Qr2qDsgBpBaMQiM8seBZjEhgLKnph7Iy`;
     console.log(api_url);
     const response = await fetch(api_url);
     const lineChartData = await response.json();
-    const data = lineChartData.results
+    console.log(lineChartData);
+    const data = lineChartData.results;
     console.log(data);
     data.forEach((item) => stockDate.push(new Date(item.t).toLocaleDateString()));
     data.forEach((item) => stockPrice.push(item.c));

@@ -11,7 +11,6 @@ async function getStockData() {
     console.log(typeof stockUpper);
     console.log(typeof stockOption);
     console.log(stockOption);
-    // var stockUppercase = stockOption.toUppercase();
     bothDates = getDates();
     api_url = `https://api.polygon.io/v2/aggs/ticker/${stockReformat}/range/1/day/${bothDates[1]}/${bothDates[0]}?sort=asc&apiKey=Qr2qDsgBpBaMQiM8seBZjEhgLKnph7Iy`;
     console.log(api_url);

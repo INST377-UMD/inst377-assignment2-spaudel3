@@ -28,8 +28,6 @@ async function createButton() {
     .then(res => res.json())
     .then(data => {
         console.log(data);
-        // creating button element
-        // assigning the name of the dog breed to the button's title
         data.data.forEach((item) => {
             let button = document.createElement("button");
             button.setAttribute("class", "button-23");

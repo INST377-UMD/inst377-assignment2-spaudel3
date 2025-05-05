@@ -1,0 +1,82 @@
+<html>
+    <head>
+        <link href="assignment2.css" rel="stylesheet">
+        <script src="//cdnjs.cloudflare.com/ajax/libs/annyang/2.6.0/annyang.min.js"></script>
+    </head>
+    <body>
+        <h1>INST377 - Activities</h1>
+
+        <nav id = "main-nav">
+            <ul>
+                <li><a href="assignment2_home.html">HOME</a></li>
+                <li><a href="assignment2_stocks.html">STOCKS</a></li>
+                <li><a href="assignment2_dogs.html">DOGS</a></li>
+            </ul>
+        </nav>
+        
+        <h1>These are some different activities we can try!</h1>
+
+        <div class="buttons">
+            <button class="button-89" role="button"><a href="assignment2_stocks.html">Stocks</a></button>
+            <button class="button-89" role="button"><a href="assignment2_dogs.html">Dogs</a></button>
+        </div>
+        <br>
+        <div class="quote-container">
+            <h2>Quote of the Page Load</h2>
+            <p id="quote-text"></p>
+        </div>
+        <br>
+        <div class="audio-instructions">
+            <h1>In this web page there are options to Navigate using Audio!</h1>
+            <p>Ensure your mic is enabled to be able to use this feature</p>
+            <ul>
+                <li>Navigate to a Different Page</li>
+                <ul><li>Say: <b>Navigate to (page)</b></li></ul>
+                <li>Change the Page Color</li>
+                <ul><li>Say: <b>Change the color to (color)</b></li></ul>
+                <li>Say Hello Back to you!</li>
+                <ul><li>Say: <b>Hello</b></li></ul>
+            </ul>
+            <div class="listening-buttons">
+                <input type="button" id="startListen" value="Turn on Listening">
+                <input type="button" id="stopListen" value="Turn off Listening">
+            </div>
+        </div>
+
+        <script src="//cdnjs.cloudflare.com/ajax/libs/annyang/2.6.1/annyang.min.js"></script>
+        <script>
+            const startButton = document.getElementById("startListen");
+            const stopButton = document.getElementById("stopListen");
+            startButton.addEventListener('click', function whenListening(){
+                if (annyang) {
+                    const commands = {
+                        'hello': () => { alert('Hello world!'); },
+                        'navigate to stocks': () => {window.location.href = "assignment2_stocks.html"},
+                        'navigate to dogs': () => {window.location.href = "assignment2_dogs.html"},
+                        'change the color to *tag': (color) => {document.body.style.backgroundColor = color;}
+                    }
+                    annyang.addCommands(commands);
+                    annyang.start();
+                }
+                console.log('Now listening');
+            });
+
+            stopButton.addEventListener('click', function stopListening(){
+                annyang.abort();
+            })
+        </script>
+
+        <script type="text/javascript">
+            const api_url = "https://zenquotes.io/api/quotes/";
+
+            async function quoteLoad(url) {
+                const response = await fetch(url);
+                const data = await response.json();
+                console.log(data);
+                const randomIndex = Math.floor(Math.random() * data.length);
+                document.getElementById("quote-text").innerHTML = `"${data[randomIndex].q}" -\n${data[randomIndex].a}`;
+            }
+            const randomQuote = quoteLoad(api_url);
+        </script>
+    </body>
+</html>
